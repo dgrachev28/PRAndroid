@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <!--<variable name="user" type="com.example.User"/>-->
+        <variable name="viewModel" type="com.company.prandroid.viewmodel.MainViewModel"/>
     </data>
 
     <RelativeLayout
@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="130dp"
-            android:text="Recognize" />
+            android:text="Recognize"
+            android:onClick="@{viewModel::onClickRecognize}"/>
     </RelativeLayout>
 </layout>

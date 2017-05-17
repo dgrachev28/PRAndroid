@@ -3,17 +3,15 @@ package com.company.prandroid
 
 import android.app.Activity
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
+import com.company.prandroid.databinding.ActivityMainBinding
 import com.company.prandroid.dto.PictureDto
 import com.company.prandroid.rest.image.ImageAPIService
+import com.company.prandroid.viewmodel.MainViewModel
 import java.io.ByteArrayOutputStream
-import android.databinding.DataBindingUtil
-import android.view.View
-import com.company.prandroid.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,18 +24,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         imageAPIService = ImageAPIService(this)
-        setContentView(R.layout.activity_main)
-//        val recognizeButton = findViewById(R.id.recognizeButton) as Button
-//        recognizeButton.setOnClickListener { dispatchTakePictureIntent() }
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-    }
-
-    fun onClickRecognize(view: View) {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePictureIntent.resolveActivity(packageManager) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-        }
+        binding.viewModel = MainViewModel(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
