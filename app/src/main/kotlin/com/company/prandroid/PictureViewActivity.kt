@@ -8,7 +8,6 @@ import android.util.Base64
 import android.widget.ImageView
 import com.company.prandroid.dto.PictureDto
 
-
 class PictureViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

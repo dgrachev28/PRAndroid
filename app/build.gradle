@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.company.prandroid"
         minSdkVersion 15
@@ -28,6 +28,9 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -46,7 +49,12 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.2.9'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    kapt "com.android.databinding:compiler:$plugin_version"
 }
 repositories {
     mavenCentral()
+}
+
+kapt {
+    generateStubs = true
 }

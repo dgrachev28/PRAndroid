@@ -11,23 +11,29 @@ import android.widget.Button
 import com.company.prandroid.dto.PictureDto
 import com.company.prandroid.rest.image.ImageAPIService
 import java.io.ByteArrayOutputStream
+import android.databinding.DataBindingUtil
+import android.view.View
+import com.company.prandroid.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     val REQUEST_IMAGE_CAPTURE = 1
 
-    lateinit var imageAPIService: ImageAPIService
+    private lateinit var imageAPIService: ImageAPIService
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         imageAPIService = ImageAPIService(this)
         setContentView(R.layout.activity_main)
-        val recognizeButton = findViewById(R.id.recognizeButton) as Button
-        recognizeButton.setOnClickListener { dispatchTakePictureIntent() }
+//        val recognizeButton = findViewById(R.id.recognizeButton) as Button
+//        recognizeButton.setOnClickListener { dispatchTakePictureIntent() }
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
     }
 
-    private fun dispatchTakePictureIntent() {
+    fun onClickRecognize(view: View) {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(packageManager) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
