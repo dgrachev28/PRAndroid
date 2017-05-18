@@ -1,6 +1,6 @@
 package com.company.prandroid.rest.image
 
-import com.company.prandroid.MainActivity
+import com.company.prandroid.viewmodel.MainViewModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -11,9 +11,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 
-class ImageAPIService(mainActivity: MainActivity) {
-
-    private val activity = mainActivity
+class ImageAPIService(private val mainViewModel: MainViewModel) {
 
     private val retrofit: Retrofit = Retrofit.Builder()
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -41,7 +39,7 @@ class ImageAPIService(mainActivity: MainActivity) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     println(it.title)
-                    activity.startPictureViewActivity(it)
+                    mainViewModel.startPictureViewActivity(it)
                 }
     }
 
