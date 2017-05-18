@@ -2,11 +2,10 @@ package com.company.prandroid.dto
 
 import java.io.Serializable
 
-class PictureDto : Serializable {
-    val title: String? = null
-    val description: String? = null
-    val year: String? = null
-    val shortInfo: String? = null
-    val gallery: String? = null
-    val imageBase64: String? = null
-}
+data class PictureDto(
+        val title: String,
+        val description: String,
+        val year: String,
+        val shortInfo: String,
+        val gallery: String,
+        val imageBase64: String) : Serializable

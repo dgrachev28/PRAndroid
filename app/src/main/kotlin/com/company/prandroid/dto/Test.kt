@@ -1,6 +1,3 @@
 package com.company.prandroid.dto
 
-class Test {
-
-    var name: String? = null
-}
+data class Test(var name: String)
