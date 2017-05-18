@@ -9,11 +9,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.company.prandroid.databinding.ActivityMainBinding
 import com.company.prandroid.viewmodel.MainViewModel
+import com.company.prandroid.viewmodel.MainViewModel.Companion.REQUEST_IMAGE_CAPTURE
 
 
 class MainActivity : AppCompatActivity() {
-
-    val REQUEST_IMAGE_CAPTURE = 1
 
     private lateinit var binding: ActivityMainBinding
 

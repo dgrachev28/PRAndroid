@@ -1,5 +1,7 @@
 package com.company.prandroid.rest.image
 
+import android.util.Log
+import com.company.prandroid.constant.BASE_URL
 import com.company.prandroid.viewmodel.MainViewModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -13,10 +15,12 @@ import rx.schedulers.Schedulers
 
 class ImageAPIService(private val mainViewModel: MainViewModel) {
 
+    private val TAG = ImageAPIService::class.java.name
+
     private val retrofit: Retrofit = Retrofit.Builder()
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("http://192.168.1.154:8080/")
+            .baseUrl(BASE_URL)
             .build()
 
     fun test() {
@@ -37,10 +41,11 @@ class ImageAPIService(private val mainViewModel: MainViewModel) {
         service.recognize(body)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    println(it.title)
+                .subscribe({
                     mainViewModel.startPictureViewActivity(it)
-                }
+                }, {
+                    Log.e(TAG, it.message, it.cause)
+                })
     }
 
 }

@@ -12,9 +12,12 @@ import com.company.prandroid.util.bitmapToByteArray
 
 class MainViewModel(private val activity: Activity) {
 
-    private val imageAPIService = ImageAPIService(this)
+    companion object {
+        val REQUEST_IMAGE_CAPTURE = 1
+        val PICTURE_DTO = "pictureDto"
+    }
 
-    val REQUEST_IMAGE_CAPTURE = 1
+    private val imageAPIService = ImageAPIService(this)
 
     fun onClickRecognize(view: View) {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -30,7 +33,7 @@ class MainViewModel(private val activity: Activity) {
 
     fun startPictureViewActivity(pictureDto: PictureDto) {
         val intent = Intent(activity, PictureViewActivity::class.java)
-        intent.putExtra("pictureDto", pictureDto)
+        intent.putExtra(PICTURE_DTO, pictureDto)
         activity.startActivity(intent)
     }
 }
