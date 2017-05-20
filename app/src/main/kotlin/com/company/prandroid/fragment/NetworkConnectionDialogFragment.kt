@@ -4,14 +4,15 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import com.company.prandroid.R
 
 
 class NetworkConnectionDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
-        builder.setMessage("Server is not available. Check your internet connection")
-                .setTitle("Connection error")
-                .setPositiveButton("OK", { _, _ ->  })
+        builder.setTitle(R.string.networkConnectionDialogTitle)
+                .setMessage(R.string.networkConnectionDialogMessage)
+                .setPositiveButton(R.string.networkConnectionDialogButton, { _, _ -> })
         return builder.create()
     }
 }

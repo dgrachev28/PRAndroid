@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">PR Android</string>
+    <string name="app_name">Picture recognition</string>
+    <string name="networkConnectionDialogTitle">Connection error</string>
+    <string name="networkConnectionDialogMessage">Server is not available. Check your internet connection</string>
+    <string name="networkConnectionDialogButton">OK</string>
+    <string name="recognizeButtonTitle">Recognize</string>
 </resources>
