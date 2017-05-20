@@ -45,6 +45,7 @@ class ImageAPIService(private val mainViewModel: MainViewModel) {
                     mainViewModel.startPictureViewActivity(it)
                 }, {
                     Log.e(TAG, it.message, it.cause)
+                    mainViewModel.showNetworkErrorDialog()
                 })
     }
 
