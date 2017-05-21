@@ -22,5 +22,6 @@ class PictureViewActivity : AppCompatActivity() {
         val decodedImage = Base64.decode(pictureDto.imageBase64, Base64.DEFAULT)
         val bmp = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.size)
         binding.imageView.setImageBitmap(Bitmap.createBitmap(bmp))
+        binding.viewModel = pictureDto
     }
 }
