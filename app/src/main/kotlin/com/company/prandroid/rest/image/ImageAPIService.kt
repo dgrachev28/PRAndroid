@@ -1,7 +1,7 @@
 package com.company.prandroid.rest.image
 
 import android.util.Log
-import com.company.prandroid.constant.BASE_URL
+import com.company.prandroid.rest.BaseAPIService
 import com.company.prandroid.viewmodel.MainViewModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -20,7 +20,7 @@ class ImageAPIService(private val mainViewModel: MainViewModel) {
     private val retrofit: Retrofit = Retrofit.Builder()
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(BaseAPIService.buildBaseUrl())
             .build()
 
     fun test() {

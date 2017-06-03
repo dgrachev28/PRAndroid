@@ -6,6 +6,7 @@ import android.provider.MediaStore
 import android.support.v4.app.FragmentActivity
 import android.view.View
 import com.company.prandroid.PictureViewActivity
+import com.company.prandroid.ServerConnectionActivity
 import com.company.prandroid.dto.PictureDto
 import com.company.prandroid.fragment.NetworkConnectionDialogFragment
 import com.company.prandroid.rest.image.ImageAPIService
@@ -25,6 +26,11 @@ class MainViewModel(private val activity: FragmentActivity) {
         if (takePictureIntent.resolveActivity(activity.packageManager) != null) {
             activity.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
         }
+    }
+
+    fun onClickSettings(view: View) {
+        val intent = Intent(activity, ServerConnectionActivity::class.java)
+        activity.startActivity(intent)
     }
 
     fun recognizeBitmap(bitmap: Bitmap) {

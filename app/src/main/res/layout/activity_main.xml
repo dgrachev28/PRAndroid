@@ -19,11 +19,21 @@
         <Button
             android:id="@+id/recognizeButton"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="120dp"
             android:text="@string/recognizeButtonTitle"
             android:onClick="@{viewModel::onClickRecognize}"/>
+
+        <Button
+            android:id="@+id/settingsButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            android:text="@string/settings"
+            android:onClick="@{viewModel::onClickSettings}"/>
     </RelativeLayout>
 </layout>
