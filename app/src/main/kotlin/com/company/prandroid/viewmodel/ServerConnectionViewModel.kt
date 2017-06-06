@@ -39,7 +39,7 @@ class ServerConnectionViewModel : BaseObservable() {
     private val statusAPIService = StatusAPIService(this)
 
     fun onClickTest(view: View) {
-        statusAPIService.status(buildBaseUrl(host, port))
+        statusAPIService.status(host, port)
     }
 
     fun onClickSave(view: View) {

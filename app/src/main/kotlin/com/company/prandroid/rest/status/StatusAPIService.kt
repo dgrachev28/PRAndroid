@@ -11,9 +11,9 @@ class StatusAPIService(private val serverConnectionViewModel: ServerConnectionVi
 
     private val TAG = StatusAPIService::class.java.name
 
-    fun status(serverBaseAddress: String) {
+    fun status(host: String, port: String) {
         try {
-            val service = buildRetrofit(serverBaseAddress).create<StatusRest>(StatusRest::class.java)
+            val service = buildRetrofit(host, port).create<StatusRest>(StatusRest::class.java)
 
             service.status()
                     .subscribeOn(Schedulers.newThread())

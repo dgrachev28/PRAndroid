@@ -2,6 +2,7 @@ package com.company.prandroid.rest.image
 
 import android.util.Log
 import com.company.prandroid.rest.BaseAPIService
+import com.company.prandroid.rest.BaseAPIService.Companion.buildRetrofit
 import com.company.prandroid.viewmodel.MainViewModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -13,24 +14,11 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 
-class ImageAPIService(private val mainViewModel: MainViewModel) {
+class ImageAPIService(private val mainViewModel: MainViewModel) : BaseAPIService() {
 
     private val TAG = ImageAPIService::class.java.name
 
-    private val retrofit: Retrofit = Retrofit.Builder()
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BaseAPIService.buildBaseUrl())
-            .build()
-
-    fun test() {
-        val service = retrofit.create<ImageRest>(ImageRest::class.java)
-
-        service.test()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { println(it.name) }
-    }
+    private val retrofit: Retrofit = buildRetrofit()
 
     fun recognize(byteArray: ByteArray) {
         val request = RequestBody.create(MediaType.parse("image/jpeg"), byteArray)

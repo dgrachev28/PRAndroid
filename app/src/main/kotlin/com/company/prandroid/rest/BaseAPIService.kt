@@ -13,14 +13,17 @@ open class BaseAPIService {
 
         @Volatile var apiHost: String = "192.168.1.154"
         @Volatile var apiPort: String = "8080"
-        fun buildBaseUrl() = "http://$apiHost:$apiPort/"
         fun buildBaseUrl(host: String, port: String) = "http://$host:$port/"
 
         fun buildRetrofit(): Retrofit {
-            return buildRetrofit(buildBaseUrl())
+            return buildRetrofit(apiHost, apiPort)
         }
 
-        fun buildRetrofit(url: String): Retrofit {
+        fun buildRetrofit(host: String, port: String): Retrofit {
+            return buildRetrofit(buildBaseUrl(host, port))
+        }
+
+        private fun buildRetrofit(url: String): Retrofit {
             val okHttpClient = OkHttpClient.Builder()
                     .readTimeout(1, TimeUnit.SECONDS)
                     .connectTimeout(1, TimeUnit.SECONDS)
