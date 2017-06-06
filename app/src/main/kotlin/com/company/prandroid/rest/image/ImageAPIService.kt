@@ -18,13 +18,11 @@ class ImageAPIService(private val mainViewModel: MainViewModel) : BaseAPIService
 
     private val TAG = ImageAPIService::class.java.name
 
-    private val retrofit: Retrofit = buildRetrofit()
-
     fun recognize(byteArray: ByteArray) {
         val request = RequestBody.create(MediaType.parse("image/jpeg"), byteArray)
         val body = MultipartBody.Part.createFormData("image", "photo.jpeg", request)
 
-        val service = retrofit.create<ImageRest>(ImageRest::class.java)
+        val service = buildRetrofit().create<ImageRest>(ImageRest::class.java)
 
         service.recognize(body)
                 .subscribeOn(Schedulers.newThread())

@@ -11,8 +11,11 @@ open class BaseAPIService {
 
     companion object {
 
-        @Volatile var apiHost: String = "192.168.1.154"
-        @Volatile var apiPort: String = "8080"
+        val DEFAULT_HOST = "192.168.1.154"
+        val DEFAULT_PORT= "8080"
+
+        @Volatile var apiHost: String = DEFAULT_HOST
+        @Volatile var apiPort: String = DEFAULT_PORT
         fun buildBaseUrl(host: String, port: String) = "http://$host:$port/"
 
         fun buildRetrofit(): Retrofit {
